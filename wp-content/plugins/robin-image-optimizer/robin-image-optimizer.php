@@ -4,7 +4,7 @@
  * Plugin URI: https://wordpress.org/plugins/robin-image-optimizer/
  * Description: Optimize images without losing quality, speed up your website load, improve SEO and save money on server and CDN bandwidth.
  * Author: Webcraftic <wordpress.webraftic@gmail.com>
- * Version: 1.4.3
+ * Version: 1.4.4
  * Text Domain: robin-image-optimizer
  * Domain Path: /languages/
  * Author URI: https://robinoptimizer.com

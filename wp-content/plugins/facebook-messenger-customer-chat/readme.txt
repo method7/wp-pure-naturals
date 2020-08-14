@@ -2,8 +2,8 @@
 Contributors: facebook
 Tags: Facebook, Messenger, Customer Care, Chat, Messaging, Chat Plugin
 Requires at least: 3.9
-Tested up to: 5.4.1
-Stable tag: 1.6
+Tested up to: 5.4.2
+Stable tag: 1.7
 Requires PHP: 5.2.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -54,7 +54,7 @@ After navigating to the Chat Plugin settings page, click on 'Setup Customer Chat
 That's it! You're all set. Now all visitors to your WordPress website will see the Messenger customer chat plugin and can message you.
 
 = Support =
-If you get stuck, or have any questions, you can ask for help in the [Messenger Customer Chat plugin forum](https://wordpress.org/support/plugin/facebook-messenger-customer-chat).
+If you get stuck, or have any questions, you can ask for help in the [Messenger Platform Developer Community](https://www.facebook.com/groups/messengerplatform).
 
 == Screenshots ==
 1. Messenger customer chat on your website
@@ -82,15 +82,16 @@ You need be an administrator of the Page.
 On the desktop, go to your Facebook page, and click on Insights on the Navigation bar. On the left hand side, click on Messaging to see your messaging analytics.
 
 = Where can I find support? =
-If you get stuck, or have any questions, you can ask for help in the [Official Facebook Chat Plugin forum](https://wordpress.org/support/plugin/facebook-messenger-customer-chat). If you would like to file a bug, please use the Facebook Bug tool found [here](https://developers.facebook.com/support/bugs/).
-
-= I am a developer. Can I help improve the plugin? =
-Of course! This plugin is open sourced on the Facebook Incubator GitHub. You can find the code and contribution instructions in the [WordPress Messenger customer chat plugin repository](https://github.com/facebookincubator/wordpress-messenger-customer-chat-plugin).
+If you get stuck, or have any questions, you can ask for help in the [Messenger Platform Developer Community](https://www.facebook.com/groups/messengerplatform). If you would like to file a bug, please use the Facebook Bug tool found [here](https://developers.facebook.com/support/bugs/).
 
 == Changelog ==
 
+= 1.7 - Aug 5, 2020 =
+* Tested up to WordPress 5.4.2
+* Added Plugin versioning
+
 = 1.6 - July 27, 2020 =
-* Bug fixes
+* Fix security issue
 
 = 1.5 - April 29, 2020 =
 * Fix undefined variable error message
@@ -117,8 +118,11 @@ Of course! This plugin is open sourced on the Facebook Incubator GitHub. You can
 
 == Upgrade Notice ==
 
+= 1.7 =
+* Added Plugin versioning. Tested up to WordPress 5.4.2
+
 = 1.6 =
-* Bug fixes
+* Fix security issue
 
 = 1.5 =
 * Fix undefined variable error message

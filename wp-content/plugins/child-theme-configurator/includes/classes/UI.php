@@ -353,6 +353,7 @@ class ChildThemeConfiguratorUI {
             'anlzcache1_txt'            => __( 'Both WP Rocket and Autoptimize plugins are enabled.', 'child-theme-configurator' ),
             'anlzcache2_txt'            => __( 'The combination of these two plugins interferes with the Analysis results. Please temporarily deactivate one of them and Analyze again.', 'child-theme-configurator' ),
             'anlzconfig_txt'            => __( '<p><strong>The WordPress configuration file has been modified incorrectly.</strong> Please see <a href="http://www.childthemeconfigurator.com/child-theme-faqs/#constants" target="_blank">this FAQ</a> for more information.</p>', 'child-theme-configurator' ),
+            'dismiss_txt'               => __( 'Dismiss this notice.', 'child-theme-configurator' ),
         ) );
         wp_localize_script(
             'chld-thm-cfg-admin', 

@@ -4,7 +4,7 @@ Plugin Name: The Official Facebook Chat Plugin
 Description: With one click, you can add the Facebook Chat Plugin to your website, enabling customers to message you while browsing your website. To see and reply to those messages, simply use the same messaging tools you use for your Facebook messaging, on desktop at facebook.com, Facebook Page Manager App (available on iOS and Android), or by adding your page account to Messenger. It’s free, easy to install and comes with a user interface your customers are already familiar with. 
 Author: Facebook
 Author URI: https://developers.facebook.com
-Version: 1.6
+Version: 1.7
 
 * Copyright (C) 2017-present, Facebook, Inc.
 *
@@ -32,20 +32,17 @@ class Facebook_Messenger_Customer_Chat {
           <script>(function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             js = d.createElement(s); js.id = id;
-            js.src = 'https://connect.facebook.net/".get_option( 'fbmcc_locale' )."/sdk/xfbml.customerchat.js#xfbml=1&version=v6.0&autoLogAppEvents=1';
+            js.src = 'https://connect.facebook.net/".fbmcc_sanitize_locale(get_option( 'fbmcc_locale' ))."/sdk/xfbml.customerchat.js#xfbml=1&version=v6.0&autoLogAppEvents=1';
             fjs.parentNode.insertBefore(js, fjs);
           }(document, 'script', 'facebook-jssdk'));</script>
           <div class='fb-customerchat'
             attribution='wordpress'
-            page_id=".get_option( 'fbmcc_pageID' )."
+            attribution_version='1.7'
+            page_id=".fbmcc_sanitize_page_id(get_option( 'fbmcc_pageID' ))."
           >
         </div>
         ";
       _e($genCode);
-    }else if( get_option( 'fbmcc_enabled' ) == '1'
-      && get_option( 'fbmcc_generatedCode' ) != ''
-    ) {
-      _e( stripslashes( get_option( 'fbmcc_generatedCode' ) ) );
     }
   }
 }

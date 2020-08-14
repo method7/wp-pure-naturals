@@ -135,6 +135,10 @@ class WIO_Image_Processor_Robin extends WIO_Image_Processor_Abstract {
 		if ( $data->status != 'ok' ) {
 			WRIO_Logger::error( sprintf( "Pending status \"ok\", bot received \"%s\"", $data->status ) );
 
+			if(isset($data->error) && is_string($data->error)) {
+			    return new WP_Error( 'http_request_failed', $data->error );
+            }
+
 			return new WP_Error( 'http_request_failed', sprintf( "Server responded an %s status", $response_code ) );
 		}
 
@@ -161,16 +165,20 @@ class WIO_Image_Processor_Robin extends WIO_Image_Processor_Abstract {
 				return $quality;
 			}
 		}
-		if ( $quality == 'normal' ) {
-			return 90;
-		}
-		if ( $quality == 'aggresive' ) {
-			return 75;
-		}
-		if ( $quality == 'ultra' ) {
-			return 50;
-		}
 
-		return 100;
+        switch( $quality ) {
+            case 'normal':
+                return 90;
+
+            case 'aggresive':
+                return 75;
+
+            case 'ultra':
+            case 'googlepage':
+                return 50;
+
+            default:
+                return 100;
+        }
 	}
 }

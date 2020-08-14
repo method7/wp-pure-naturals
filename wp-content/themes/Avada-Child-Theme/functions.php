@@ -241,3 +241,133 @@ function product_category_additional_information(){
 		}
 	}
 };
+
+/**
+ * Woo Cart Dropdown for Main Nav or Top Nav.
+ *
+ * @param string $position The cart position.
+ * @return string HTML of Dropdown
+ */
+function avada_nav_woo_cart( $position = 'main' ) {
+
+    if ( ! class_exists( 'WooCommerce' ) ) {
+        return '';
+    }
+    
+
+    $woo_cart_page_link       = wc_get_cart_url();
+    $cart_link_active_class   = '';
+    $cart_link_active_text    = '';
+    $is_enabled               = false;
+    $main_cart_class          = '';
+    $cart_link_inactive_class = '';
+    $cart_link_inactive_text  = '';
+    $items                    = '';
+    $cart_contents_count      = WC()->cart->get_cart_contents_count();
+
+    if ( 'main' === $position ) {
+        $is_enabled               = Avada()->settings->get( 'woocommerce_cart_link_main_nav' );
+        $main_cart_class          = ' fusion-main-menu-cart';
+        $cart_link_active_class   = 'fusion-main-menu-icon fusion-main-menu-icon-active';
+        $cart_link_inactive_class = 'fusion-main-menu-icon';
+        if ( Avada()->settings->get( 'woocommerce_cart_counter' ) ) {
+            if ( $cart_contents_count ) {
+                $cart_link_active_text = '<span class="fusion-widget-cart-number">' . $cart_contents_count . '</span>';
+            }
+            $main_cart_class .= ' fusion-widget-cart-counter';
+        } elseif ( $cart_contents_count ) {
+            // If we're here, then ( Avada()->settings->get( 'woocommerce_cart_counter' ) ) is not true.
+            $main_cart_class .= ' fusion-active-cart-icons';
+        }
+    } elseif ( 'secondary' === $position ) {
+        $is_enabled             = Avada()->settings->get( 'woocommerce_cart_link_top_nav' );
+        $main_cart_class        = ' fusion-secondary-menu-cart';
+        $cart_link_active_class = 'fusion-secondary-menu-icon';
+        /* translators: Number of items. */
+        $cart_link_active_text    = sprintf( esc_html__( '%s Item(s)', 'Avada' ), $cart_contents_count ) . ' <span class="fusion-woo-cart-separator">-</span> ' . WC()->cart->get_cart_subtotal();
+        $cart_link_inactive_class = $cart_link_active_class;
+        $cart_link_inactive_text  = esc_html__( 'Cart', 'Avada' );
+    }
+
+    $highlight_class = '';
+    if ( 'bar' === Avada()->settings->get( 'menu_highlight_style' ) ) {
+        $highlight_class = ' fusion-bar-highlight';
+    }
+    $cart_link_markup = '<a class="' . $cart_link_active_class . $highlight_class . '" href="' . $woo_cart_page_link . '"><span class="menu-text" aria-label="' . esc_html__( 'View Cart', 'Avada' ) . '">' . $cart_link_active_text . '</span></a>';
+    if ( $is_enabled ) {
+        if ( is_cart() ) {
+            $main_cart_class .= ' current-menu-item current_page_item';
+        }
+
+        $items = '<li class="fusion-custom-menu-item fusion-menu-cart' . $main_cart_class . '">';
+        if ( $cart_contents_count ) {
+            $checkout_link = wc_get_checkout_url();
+
+            $items .= $cart_link_markup;
+            $items .= '<div class="fusion-custom-menu-item-contents fusion-menu-cart-items">';
+            foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+                $_product     = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+                $product_link = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
+                $thumbnail_id = ( $cart_item['variation_id'] && has_post_thumbnail( $cart_item['variation_id'] ) ) ? $cart_item['variation_id'] : $cart_item['product_id'];
+
+                if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
+                    $items .= '<div class="fusion-menu-cart-item">';
+                    $items .= '<a href="' . $product_link . '">';
+                    $items .= get_the_post_thumbnail( $thumbnail_id, 'recent-works-thumbnail' );
+
+                    // Check needed for pre Woo 2.7 versions only.
+                    $item_name = method_exists( $_product, 'get_name' ) ? $_product->get_name() : $cart_item['data']->post->post_title;
+
+                    $items .= '<div class="fusion-menu-cart-item-details">';
+                    $items .= '<span class="fusion-menu-cart-item-title">' . $item_name . '</span>';
+
+                    $product_price = apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
+                    if ( '' !== $product_price ) {
+                        $product_price = ' x ' . $product_price;
+                    }
+                    $items .= '<span class="fusion-menu-cart-item-quantity">' . $cart_item['quantity'] . $product_price . '</span>';
+                    $items .= '</div>';
+                    $items .= '</a>';
+                    $items .= '</div>';
+                }
+            }
+            $items .= '<div class="fusion-menu-cart-checkout">';
+            $items .= '<div class="fusion-menu-cart-link"><a href="' . $woo_cart_page_link . '">' . esc_html__( 'View Cart', 'Avada' ) . '</a></div>';
+            $items .= '<div class="fusion-menu-cart-checkout-link"><a href="' . $checkout_link . '">' . esc_html__( 'Checkout', 'Avada' ) . '</a></div>';
+            $items .= '</div>';
+            $items .= '</div>';
+        } else {
+            // Batch 1 2.4.3 start
+            $items .= '<a class="' . $cart_link_inactive_class . $highlight_class . '" href="' . $woo_cart_page_link . '"><span class="menu-text" aria-label="' . esc_html__( 'View Cart', 'Avada' ) . '">' . $cart_link_inactive_text . '</span></a>';
+            $items .= '<div class="fusion-custom-menu-item-contents fusion-menu-cart-items">';
+            $items .= '<p class="cart-empty woocommerce-info">' . wp_kses_post( apply_filters( 'wc_empty_cart_message', __( 'Your cart is currently empty.', 'woocommerce' ) ) ) . '</p>';
+            $items .= '<div class="fusion-menu-cart-checkout">';
+            $items .= '<div class="fusion-menu-cart-link"><a href="' . $woo_cart_page_link . '">' . esc_html__( 'View Cart', 'Avada' ) . '</a></div>';
+            $items .= '</div>';
+            $items .= '</div>';
+            // Batch 1 2.4.3 end
+        }
+        $items .= '</li>';
+    }
+    return $items;
+}
+
+/**
+ * Simple helper to debug to the console
+ *
+ * @param $data object, array, string $data
+ * @param $context string  Optional a description.
+ *
+ * @return string
+ */
+function debug_to_console($data, $context = 'Debug in Console') {
+
+    // Buffering to solve problems frameworks, like header() in this and not a solid return.
+    ob_start();
+
+    $output  = 'console.info(\'' . $context . ':\');';
+    $output .= 'console.log(' . json_encode($data) . ');';
+    $output  = sprintf('<script>%s</script>', $output);
+
+    echo $output;
+}

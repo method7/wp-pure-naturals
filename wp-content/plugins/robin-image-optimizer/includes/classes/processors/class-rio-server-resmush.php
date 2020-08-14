@@ -131,16 +131,20 @@ class WIO_Image_Processor_Resmush extends WIO_Image_Processor_Abstract {
 				return $quality;
 			}
 		}
-		if ( $quality == 'normal' ) {
-			return 90;
-		}
-		if ( $quality == 'aggresive' ) {
-			return 75;
-		}
-		if ( $quality == 'ultra' ) {
-			return 50;
-		}
 
-		return 100;
+        switch( $quality ) {
+            case 'normal':
+                return 90;
+
+            case 'aggresive':
+                return 75;
+
+            case 'ultra':
+            case 'googlepage':
+                return 50;
+
+            default:
+                return 100;
+        }
 	}
 }

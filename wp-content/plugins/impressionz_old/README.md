@@ -1,5 +1,0 @@
-# Impressionz
-
-
-
-== Changelog ==

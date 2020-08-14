@@ -53,6 +53,11 @@ class WRIO_SettingsPage extends WRIO_Page {
 		$this->styles->add( WRIO_PLUGIN_URL . '/admin/assets/css/base-statistic.css' );
 		$this->scripts->add( WRIO_PLUGIN_URL . '/admin/assets/js/restore-backup.js' );
 
+		if( ! wrio_is_license_activate() ) {
+            $this->styles->add( WRIO_PLUGIN_URL . '/admin/assets/css/settings-premium.css' );
+            $this->scripts->add( WRIO_PLUGIN_URL . '/admin/assets/js/settings-premium.js');
+        }
+
 		// Add Clearfy styles for HMWP pages
 		if ( defined( 'WBCR_CLEARFY_PLUGIN_ACTIVE' ) ) {
 			$this->styles->add( WCL_PLUGIN_URL . '/admin/assets/css/general.css' );
@@ -144,6 +149,11 @@ class WRIO_SettingsPage extends WRIO_Page {
 					__( 'High', 'robin-image-optimizer' ),
 					__( 'This mode will use all available optimization methods for maximum image compression. The file size will be reduced approximately 7 times. The quality of some images may deteriorate slightly. Use this mode if you need the maximum weight reduction, and you are ready to accept the loss of image quality.', 'robin-image-optimizer' )
 				],
+                [
+                    'googlepage',
+                    __('G PageSpeed', 'robin-image-optimizer'),
+                    __('This mode uses the optimal settings for Google Page Speed', 'robin-image-optimizer'),
+                ],
 				[
 					'custom',
 					__( 'Custom', 'robin-image-optimizer' ),

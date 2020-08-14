@@ -138,7 +138,7 @@ class WRIO_StatisticPage extends WRIO_Page {
 		$this->styles->add( WRIO_PLUGIN_URL . '/admin/assets/css/sweetalert-custom.css' );
 
 		$this->scripts->add( WRIO_PLUGIN_URL . '/admin/assets/js/Chart.min.js' );
-		$this->scripts->add( WRIO_PLUGIN_URL . '/admin/assets/js/statistic.js' );
+		//$this->scripts->add( WRIO_PLUGIN_URL . '/admin/assets/js/statistic.js' );
 
 		$this->scripts->add( WRIO_PLUGIN_URL . '/admin/assets/js/modals.js', [ 'jquery' ], 'wrio-modals' );
 		$this->scripts->add( WRIO_PLUGIN_URL . '/admin/assets/js/bulk-optimization.js', [
@@ -168,9 +168,10 @@ class WRIO_StatisticPage extends WRIO_Page {
 
 		$backup = new WIO_Backup();
 
-		wp_localize_script( 'jquery', 'wrio_l18n_bulk_page', $this->get_i18n() );
+		wp_enqueue_script( 'wio-statistic-page', WRIO_PLUGIN_URL . '/admin/assets/js/statistic.js', [ 'jquery' ], WRIO_Plugin::app()->getPluginVersion() );
+		wp_localize_script( 'wio-statistic-page', 'wrio_l18n_bulk_page', $this->get_i18n() );
 
-		wp_localize_script( 'jquery', 'wrio_settings_bulk_page', [
+		wp_localize_script( 'wio-statistic-page', 'wrio_settings_bulk_page', [
 			'is_premium'             => wrio_is_license_activate(),
 			'is_network_admin'       => WRIO_Plugin::app()->isNetworkAdmin() ? 1 : 0,
 			'is_writable_backup_dir' => $backup->isBackupWritable() ? 1 : 0,

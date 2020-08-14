@@ -16,7 +16,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <?php
 
-$content_1 = avada_secondary_header_content( 'header_left_content' );
+// $content_1 = avada_secondary_header_content( 'header_left_content' );
+$content_1 = null;
 $content_2 = avada_secondary_header_content( 'header_right_content' );
 ?>
 

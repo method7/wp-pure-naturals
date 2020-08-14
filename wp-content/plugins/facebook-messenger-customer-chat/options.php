@@ -54,10 +54,26 @@ function fbmcc_update_options() {
 
   if ( current_user_can( 'manage_options' ) ) {
     check_ajax_referer( 'update_fmcc_code' );
-    update_option( 'fbmcc_pageID', sanitize_text_field($_POST['pageID']));
-    update_option( 'fbmcc_locale', sanitize_text_field($_POST['locale']));
+    update_option( 'fbmcc_pageID', fbmcc_sanitize_page_id($_POST['pageID']));
+    update_option( 'fbmcc_locale', fbmcc_sanitize_locale($_POST['locale']));
   }
   wp_die();
+}
+
+function fbmcc_sanitize_page_id($input) {
+  if ( preg_match('/^\d+$/', $input) ) {
+    return $input;
+  } else {
+    return '';
+  }
+}
+
+function fbmcc_sanitize_locale($input) {
+  if ( preg_match('/^[A-Za-z_]{4,5}$/', $input) ){
+    return $input;
+  } else {
+    return '';
+  }
 }
 
 function fbmcc_add_styles() {
@@ -137,9 +153,9 @@ function fbmcc_integration_settings() {
             Facebook Platform Bug Reports</a> page. If you get stuck or have questions,
             you can ask for help in the
             <a
-            href='https://wordpress.org/support/plugin/facebook-messenger-customer-chat'
+            href='https://www.facebook.com/groups/messengerplatform'
             target='_blank'>
-            Facebook Chat Plugin forum</a>.
+            Messenger Platform Developer Community</a>.
         </p>
       </div>
     </div>

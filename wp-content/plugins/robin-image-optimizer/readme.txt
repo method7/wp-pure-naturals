@@ -2,7 +2,7 @@
 Tags: image, optimizer, image optimization, resmush.it, smush, jpg, png, gif, optimization, compression, Compress, Images, Pictures, Reduce Image Size, Smush, Smush.it
 Contributors: webcraftic, creativemotion
 Requires at least: 4.8
-Tested up to: 5.4.2
+Tested up to: 5.5
 Requires PHP: 5.4
 Stable tag: trunk
 License: GPLv2
@@ -109,6 +109,10 @@ Robin image optimizer PRO has full integration with NextGen Gallery, which helps
 4. Media library
 
 == Changelog ==
+= 1.4.4 =
+* Fixed: Problem with choosing an optimization server on WordPress 5.5
+* Added: Optimization mode for Google PageSpeed [PRO]
+
 = 1.4.3 =
 * Fixed: Unable to change the server if it is unavailable after selection.
 * Added: Added filter `wbcr/rio/backup/backup_dir` for changing the backup directory.

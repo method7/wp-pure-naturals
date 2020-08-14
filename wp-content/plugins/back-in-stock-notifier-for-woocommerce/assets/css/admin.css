@@ -1,0 +1,53 @@
+mark.cwgmark {
+    padding: 3px 10px 3px 10px;
+    border-radius:2px;
+    text-transform: uppercase;
+    font-weight:bold;
+}
+
+mark.cwgsubscribed {
+    background:#3789e2;
+    color:#fff;
+
+}
+mark.cwgunsubscribed {
+    background: red;
+    color:#fff;
+}
+
+mark.cwgmailsent {
+    background: green;
+    color:#fff;
+}
+
+mark.cwgpurchased {
+    background: orange;
+    color: #fff;
+}
+
+mark.cwg_mailnotsent {
+    background:#f83030;
+    color:#fff;
+}
+
+mark.cwgmark_exists {
+    background:green;
+    color:#fff;
+    padding:  5px;
+    border-radius:5px;
+}
+
+mark.cwgmark_notexists {
+    background: red;
+    color:#fff;
+    padding:  5px;
+    border-radius:5px;
+}
+
+#cwginstocknotifier_settings .form-table {
+    background:#fff;
+}
+#cwginstocknotifier_settings .form-table th, #cwginstocknotifier_settings .form-table td {
+    padding:10px;
+}
+

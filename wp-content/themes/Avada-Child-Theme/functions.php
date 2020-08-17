@@ -284,7 +284,7 @@ function avada_nav_woo_cart( $position = 'main' ) {
         $main_cart_class        = ' fusion-secondary-menu-cart';
         $cart_link_active_class = 'fusion-secondary-menu-icon';
         /* translators: Number of items. */
-        $cart_link_active_text    = sprintf( esc_html__( '%s Item(s)', 'Avada' ), $cart_contents_count ) . ' <span class="fusion-woo-cart-separator">-</span> ' . WC()->cart->get_cart_subtotal();
+        $cart_link_active_text    = '<span class="fusion-woo-cart-count-circle"><span class="fusion-woo-cart-count">' . sprintf( '%s', $cart_contents_count ) . '</span></span>' . ' <span class="fusion-woo-cart-count-copy">Item(s)</span>' . ' <span class="fusion-woo-cart-separator">-</span>' . '<span class="fusion-woo-cart-value"> ' . WC()->cart->get_cart_subtotal() . '</span>'; 
         $cart_link_inactive_class = $cart_link_active_class;
         $cart_link_inactive_text  = esc_html__( 'Cart', 'Avada' );
     }
@@ -338,7 +338,8 @@ function avada_nav_woo_cart( $position = 'main' ) {
             $items .= '</div>';
         } else {
             // Batch 1 2.4.3 start
-            $items .= '<a class="' . $cart_link_inactive_class . $highlight_class . '" href="' . $woo_cart_page_link . '"><span class="menu-text" aria-label="' . esc_html__( 'View Cart', 'Avada' ) . '">' . $cart_link_inactive_text . '</span></a>';
+            // $items .= '<a class="' . $cart_link_inactive_class . $highlight_class . '" href="' . $woo_cart_page_link . '"><span class="menu-text" aria-label="' . esc_html__( 'View Cart', 'Avada' ) . '">' . $cart_link_inactive_text . '</span></a>';
+            $items .= '<a class="' . $cart_link_inactive_class . $highlight_class . '" href="' . $woo_cart_page_link . '"><span class="menu-text" aria-label="' . esc_html__( 'View Cart', 'Avada' ) . '"></span></a>';
             $items .= '<div class="fusion-custom-menu-item-contents fusion-menu-cart-items">';
             $items .= '<p class="cart-empty woocommerce-info">' . wp_kses_post( apply_filters( 'wc_empty_cart_message', __( 'Your cart is currently empty.', 'woocommerce' ) ) ) . '</p>';
             $items .= '<div class="fusion-menu-cart-checkout">';

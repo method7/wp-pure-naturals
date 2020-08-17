@@ -507,6 +507,59 @@ body {
 .fusion-secondary-menu > ul > li:hover .fusion-menu-cart-items a {
   color: #2b2e32;
 }
+.fusion-secondary-menu > ul > li > a {
+  padding: 0 10px !important;
+}
+
+.fusion-menu-cart {
+  width: auto !important;
+}
+
+.fusion-woo-cart-count {
+  font-size: 12px;
+  background: #ff0000;
+  color: #fff;
+  padding: 0 5px;
+  vertical-align: top;
+  margin-left: -10px;
+  padding-left: 9px;
+  padding-right: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+  position: absolute;
+  top: 6px;
+  left: 30px;
+}
+.fusion-woo-cart-count-copy,
+.fusion-woo-cart-separator,
+.woocommerce-Price-amount {
+  display: none;
+}
+.fusion-menu-cart-items {
+  width: 333px !important;
+}
+@media only screen and (min-width: 767px) {
+  .fusion-woo-cart-count {
+    font-size: inherit;
+    background: none;
+    color: rgb(43, 46, 50);
+    padding: 0;
+    margin: 0;
+    position: relative;
+    top: auto;
+    left: auto;
+    vertical-align: inherit;
+  }
+  .fusion-woo-cart-count-copy,
+  .fusion-woo-cart-separator,
+  .woocommerce-Price-amount {
+    display: inline-block;
+  }
+  .fusion-secondary-menu > ul > li > a {
+    padding: 0 13px !important;
+  }
+}
 
 /*=========================================================================================================================================================
 																General Content area
@@ -639,6 +692,7 @@ body {
     padding-bottom: 35px !important;
   }
 }
+
 @media only screen and (max-width: 480px) {
   .compare.button {
     margin-bottom: 5px;

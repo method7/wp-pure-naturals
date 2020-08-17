@@ -354,6 +354,101 @@ function avada_nav_woo_cart( $position = 'main' ) {
 }
 
 /**
+ * Add woocommerce cart to main navigation or top navigation.
+ *
+ * @param  string $items HTML for the main menu items.
+ * @param  array  $args  Arguments for the WP menu.
+ * @return string
+ */
+function avada_add_login_box_to_nav( $items, $args ) {
+
+    $ubermenu = ( function_exists( 'ubermenu_get_menu_instance_by_theme_location' ) && ubermenu_get_menu_instance_by_theme_location( $args->theme_location ) ) ? true : false; // Disable woo cart on ubermenu navigations.
+
+    if ( $ubermenu ) {
+        return $items;
+    }
+
+    if ( in_array( $args->theme_location, array( 'main_navigation', 'top_navigation', 'sticky_navigation' ) ) ) {
+        $is_enabled    = ( 'top_navigation' === $args->theme_location ) ? Avada()->settings->get( 'woocommerce_acc_link_top_nav' ) : Avada()->settings->get( 'woocommerce_acc_link_main_nav' );
+        $header_layout = Avada()->settings->get( 'header_layout' );
+
+        if ( class_exists( 'WooCommerce' ) && $is_enabled ) {
+            $woo_account_page_link = wc_get_page_permalink( 'myaccount' );
+
+            if ( $woo_account_page_link ) {
+                $active_classes = ( is_account_page() ) ? ' current-menu-item current_page_item' : '';
+                $my_account_link_contents = esc_html__( 'My Account', 'Avada' );
+
+                $items .= '<li class="menu-item fusion-dropdown-menu menu-item-has-children fusion-custom-menu-item fusion-menu-login-box' . $active_classes . '">';
+
+                // If chosen in Theme Options, display the caret icon, as the my account item alyways has a dropdown.
+                $caret_icon = $caret_before = $caret_after = '';
+                if ( 'none' !== Avada()->settings->get( 'menu_display_dropdown_indicator' ) && 'v6' !== $header_layout ) {
+                    $caret_icon = '<span class="fusion-caret"><i class="fusion-dropdown-indicator"></i></span>';
+                }
+
+                if ( 'Right' === Avada()->settings->get( 'header_position' ) && ! is_rtl() || 'Left' === Avada()->settings->get( 'header_position' ) && is_rtl() ) {
+                    $caret_before = $caret_icon;
+                } else {
+                    $caret_after = $caret_icon;
+                }
+                $menu_highlight_style     = Avada()->settings->get( 'menu_highlight_style' );
+
+                $items .= '<a href="' . $woo_account_page_link . '" aria-haspopup="true" class="fusion-' . $menu_highlight_style . '-highlight">' . $caret_before . '<span class="menu-text">' . $my_account_link_contents . '</span>' . $caret_after;
+
+                if ( 'main_navigation' === $args->theme_location && 'v6' !== $header_layout ) {
+                    $items = apply_filters( 'avada_menu_arrow_hightlight', $items, true );
+                }
+
+                $items .= '</a>';
+
+                if ( 'v6' !== $header_layout ) {
+                    if ( ! is_user_logged_in() ) {
+                        $referer = fusion_get_referer();
+                        $referer = ( $referer ) ? $referer : '';
+
+                        $items .= '<div class="fusion-custom-menu-item-contents">';
+                        if ( isset( $_GET['login'] ) && 'failed' === $_GET['login'] ) {
+                            $items .= '<p class="fusion-menu-login-box-error">' . esc_html__( 'Login failed, please try again.', 'Avada' ) . '</p>';
+                        }
+                        $items .= '<form action="' . esc_attr( site_url( 'wp-login.php', 'login_post' ) ) . '" name="loginform" method="post">';
+                        $items .= '<p><input type="text" class="input-text" name="log" id="username" value="" placeholder="' . esc_html__( 'Username', 'Avada' ) . '" /></p>';
+                        $items .= '<p><input type="password" class="input-text" name="pwd" id="password" value="" placeholder="' . esc_html__( 'Password', 'Avada' ) . '" /></p>';
+                        $items .= '<p class="fusion-remember-checkbox"><label for="fusion-menu-login-box-rememberme"><input name="rememberme" type="checkbox" id="fusion-menu-login-box-rememberme" value="forever"> ' . esc_html__( 'Remember Me', 'Avada' ) . '</label></p>';
+                        $items .= '<input type="hidden" name="fusion_woo_login_box" value="true" />';
+                        $items .= '<p class="fusion-login-box-submit">';
+                        $items .= '<input type="submit" name="wp-submit" id="wp-submit" class="button button-small default comment-submit" value="' . esc_html__( 'Log In', 'Avada' ) . '">';
+                        $items .= '<input type="hidden" name="redirect" value="' . esc_url( $referer ) . '">';
+                        $items .= '</p>';
+                        $items .= '</form>';
+                        $items .= '<a class="fusion-menu-login-box-register" href="' . get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) . '" title="' . esc_attr__( 'Register', 'Avada' ) . '">' . esc_attr__( 'Register', 'Avada' ) . '</a>';
+                        $items .= '</div>';
+                    } else {
+                        $account_endpoints = wc_get_account_menu_items();
+                        unset( $account_endpoints['dashboard'] );
+
+                        $items .= '<ul role="menu" class="sub-menu">';
+                        $items .= '<li class="menu-item fusion-dropdown-submenu' . $active_classes . '">';
+                            $items .= '<a href="' . $woo_account_page_link . '">' . $my_account_link_contents . '</a>';
+                            $items .= '</li>';
+                        foreach ( $account_endpoints as $endpoint => $label ) {
+                            $active_classes = ( is_wc_endpoint_url( $endpoint ) ) ? ' current-menu-item current_page_item' : '';
+
+                            $items .= '<li class="menu-item fusion-dropdown-submenu' . $active_classes . '">';
+                            $items .= '<a href="' . esc_url( wc_get_account_endpoint_url( $endpoint ) ) . '">' . esc_html( $label ) . '</a>';
+                            $items .= '</li>';
+                        }
+                        $items .= '</ul>';
+                    }
+                }
+                $items .= '</li>';
+            }
+        }
+    }
+    return $items;
+}
+
+/**
  * Simple helper to debug to the console
  *
  * @param $data object, array, string $data

@@ -538,6 +538,7 @@ body {
 }
 .fusion-menu-cart-items {
   width: 333px !important;
+  margin-left: -252px;
 }
 @media only screen and (min-width: 767px) {
   .fusion-woo-cart-count {

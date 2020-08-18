@@ -541,6 +541,10 @@ body {
   margin-left: -252px;
 }
 @media only screen and (min-width: 767px) {
+  .fusion-menu-cart-items {
+    width: auto !important;
+    margin-left: 0;
+  }
   .fusion-woo-cart-count {
     font-size: inherit;
     background: none;

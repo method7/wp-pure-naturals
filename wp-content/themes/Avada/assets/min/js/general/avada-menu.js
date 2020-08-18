@@ -1,4 +1,6 @@
+// this file is executed 
 // pure-naturals/app/public/wp-content/themes/Avada/assets/min/js/general/avada-menu.js
+
 jQuery(document).ready(function () {
     "use strict";
     function a(a) {
@@ -632,11 +634,11 @@ jQuery(document).ready(function () {
             a.stopPropagation();
         }),
         // BATCH 1 - 2.4.2 / 2.4.3 start
-        jQuery(".fusion-bar-highlight").click(function (a) {
+        jQuery(".fusion-secondary-menu .fusion-bar-highlight").click(function (a) {
             // BATCH 1 - 1 2.5.3 start
             m7_close_search();
             // BATCH 1 - 1 2.5.3 end
-            false === jQuery(this).parent().hasClass("menu-item-type-custom") &&
+            false === jQuery(this).parent('li').hasClass("menu-item-type-custom") &&
                 (a.preventDefault())
 
         }),

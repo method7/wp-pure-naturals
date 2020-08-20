@@ -452,7 +452,7 @@ body {
 .fusion-mobile-menu-icons a,
 .fusion-mobile-menu-icons a:after,
 .fusion-mobile-menu-icons a:before {
-  color: #5e6166;
+  color: #5e6166 !important;
 }
 .fusion-menu-cart-checkout-link {
   display: none;
@@ -503,16 +503,27 @@ body {
 .fusion-secondary-menu > ul > li:hover .fusion-secondary-menu-icon span {
   color: white;
 }
+.fusion-secondary-menu > ul > li a,
 .fusion-secondary-menu > ul > li:hover .sub-menu a,
 .fusion-secondary-menu > ul > li:hover .fusion-menu-cart-items a {
   color: #2b2e32;
 }
+
+.fusion-secondary-menu > ul > li:hover .fusion-menu-login-box-register {
+  color: #2b2e32;
+  padding-top: 20px;
+}
+
 .fusion-secondary-menu > ul > li > a {
   padding: 0 10px !important;
 }
 
 .fusion-menu-cart {
   width: auto !important;
+}
+
+.fusion-secondary-menu-icon .menu-text::before {
+  margin-right: 0px !important;
 }
 
 .fusion-woo-cart-count {
@@ -536,34 +547,48 @@ body {
 .woocommerce-Price-amount {
   display: none;
 }
-.fusion-menu-cart-items {
+/* .fusion-secondary-menu .sub-menu, */
+.fusion-secondary-menu
+  .fusion-custom-menu-item-contents.fusion-menu-cart-items {
   width: 333px !important;
   margin-left: -252px;
 }
+
 .fusion-main-menu-search {
   max-width: 16px;
 }
 .fusion-main-menu-search-open,
 .fusion-custom-menu-item-contents {
-  width: 500px !important;
+  width: 350px !important;
 }
+.fusion-open-submenu:hover,
+.fusion-open-submenu:active {
+  color: #2b2e32 !important;
+}
+/* .fusion-secondary-menu > ul > li:hover .fusion-woo-cart-count {
+  background: #fff;
+  color: #538302 !important;
+  border: solid 1px rgb(119, 181, 8);
+} */
 
+.fusion-header-wrapper {
+  z-index: 100;
+}
 @media only screen and (min-width: 767px) {
-  .fusion-menu-cart-items {
+  .fusion-secondary-menu
+    .fusion-custom-menu-item-contents.fusion-menu-cart-items {
     width: auto !important;
     margin-left: 0;
   }
   .fusion-woo-cart-count {
     font-size: inherit;
-    background: none;
-    color: rgb(43, 46, 50);
-    padding: 0;
-    margin: 0;
     position: relative;
-    top: auto;
-    left: auto;
+    top: -9px;
+    left: -10px;
     vertical-align: inherit;
+    margin: 0 5px;
   }
+
   .fusion-woo-cart-count-copy,
   .fusion-woo-cart-separator,
   .woocommerce-Price-amount {

@@ -528,6 +528,7 @@ body {
 
 .fusion-woo-cart-count {
   font-size: 12px;
+  font-weight: bold;
   background: #ff0000;
   color: #fff;
   padding: 0 5px;

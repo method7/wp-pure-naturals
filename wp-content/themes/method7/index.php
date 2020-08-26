@@ -26,7 +26,6 @@
                 </div>
             </div>
             <?php wp_footer(); ?>
-        </div>
-        <?php debug_to_console(home_url())?>			
+        </div>			
     </body>
 </html>

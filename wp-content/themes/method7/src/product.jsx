@@ -16,6 +16,7 @@ class Product extends React.Component {
   fetchData = () => {
     const url = window.location.href.split('/');
     const slug = url.pop() || url.pop();
+    console.log(slug);
     const fetchUrl = `${Method7Settings.woo.url}products?slug=${slug}&consumer_key=${Method7Settings.woo.consumer_key}&consumer_secret=${Method7Settings.woo.consumer_secret}`;
 
     fetch(fetchUrl)

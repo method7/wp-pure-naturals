@@ -21,6 +21,7 @@ class Products extends React.Component {
   }
 
   componentDidMount() {
+    console.log('React.version', React.version);
     // init ScrollMagic Controller
     this.controller = new ScrollMagic.Controller();
 
@@ -41,15 +42,29 @@ class Products extends React.Component {
     let totalPages;
 
     this.setState({ page: this.state.page + 1 });
-
     fetch(
+      // https://mysite.com/wc-api/v1/products?
+      // filter[categories]=gedgets&
+      // consumer_key=ck_9354534x&
+      // consumer_secret=cs_dx7345345
+
+      // https://example.com/wp-json/wc/v2/products/?
+      // attribute=pa_color&
+      // attribute_term=green
+
+      /// https://pure-naturals.local/wp-json/wc/v3/products/categories
+
       Method7Settings.woo.url +
-        'products?page=' +
-        this.state.page +
-        '&consumer_key=' +
+        'products?filter[categories]=vitamins-and-supplements&consumer_key=' +
         Method7Settings.woo.consumer_key +
         '&consumer_secret=' +
         Method7Settings.woo.consumer_secret
+
+      // Method7Settings.woo.url +
+      //   'products?filter[categories]=vitamins-and-supplements&consumer_key=' +
+      //   Method7Settings.woo.consumer_key +
+      //   '&consumer_secret=' +
+      //   Method7Settings.woo.consumer_secret
     )
       .then((response) => {
         for (const pair of response.headers.entries()) {

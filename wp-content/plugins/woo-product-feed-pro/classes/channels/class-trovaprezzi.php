@@ -44,6 +44,12 @@ class WooSEA_trovaprezzi {
                                         "format" => "required",
                                         "woo_suggest" => "price",
                                 ),
+                                "Original price" => array(
+                                        "name" => "OriginalPrice",
+                                        "feed_name" => "OriginalPrice",
+                                        "format" => "optional",
+                                        "woo_suggest" => "price",
+                                ),
                                 "Product category" => array(
                                         "name" => "Categories",
                                         "feed_name" => "Categories",
@@ -95,6 +101,31 @@ class WooSEA_trovaprezzi {
                                 "MPN" => array(
                                         "name" => "MpnCode",
                                         "feed_name" => "MpnCode",
+                                        "format" => "optional",
+                                ),
+                                "PartNumber" => array(
+                                        "name" => "PartNumber",
+                                        "feed_name" => "PartNumber",
+                                        "format" => "optional",
+                                ),
+                                "Descrizione" => array(
+                                        "name" => "Descrizione",
+                                        "feed_name" => "Taglia",
+                                        "format" => "optional",
+                                ),
+                                "Taglia" => array(
+                                        "name" => "Taglia",
+                                        "feed_name" => "Taglia",
+                                        "format" => "optional",
+                                ),
+                                "Colore" => array(
+                                        "name" => "Colore",
+                                        "feed_name" => "Colore",
+                                        "format" => "optional",
+                                ),
+                              	"Materiale" => array(
+                                        "name" => "Materiale",
+                                        "feed_name" => "Materiale",
                                         "format" => "optional",
                                 ),
                                 "Shipping Cost" => array(

@@ -31,9 +31,9 @@ function method7_scripts() {
 			'root' => esc_url_raw( $url ),
 		),
 		'woo' => array(
-			'url' => esc_url_raw( 'https://pure-naturals.local/method7/wp-json/wc/v2/' ), // hard-code URL since it needs to be HTTPS for WC REST API to work
-			'consumer_key' => 'ck_4c897a273bde1274df0325247804ceeb8b09334d',
-			'consumer_secret' => 'cs_b1f81580f8f03ff383b7d655e889c26464639064'
+			'url' => esc_url_raw( 'https://pure-naturals.local/wp-json/wc/v2/' ), // hard-code URL since it needs to be HTTPS for WC REST API to work
+			'consumer_key' => 'ck_159bf60aa3f3e71ff2004eb9b59d47427464fc24',
+			'consumer_secret' => 'cs_81f53bb13f4ff25b85521e81ec8a051165db8226'
 		),
 	) ) ) );
 }

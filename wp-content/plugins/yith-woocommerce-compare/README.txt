@@ -3,13 +3,13 @@
 Contributors: yithemes
 Tags: yith, woocommerce compare, compare products, product compare, product comparison
 Requires at least: 4.0
-Tested up to: 5.4
-Stable tag: 2.3.22
+Tested up to: 5.5
+Stable tag: 2.3.23
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 YITH WooCommerce Compare allows you to compare more products of your shop in one complete table.
-WooCommerce Compatible up to 4.2
+WooCommerce Compatible up to 4.4
 
 == Description ==
 
@@ -19,7 +19,7 @@ set with the woocommerce attributes in the product configuration.
 You can also add a simple widget with the list of products the users have added, where you can manage them.
 Also you can simply customize the compare table with your style, by editing the specific template.
 
-Full documentation is available [here](http://yithemes.com/docs-plugins/yith-woocommerce-compare).
+Full documentation is available [here](https://yithemes.com/docs-plugins/yith-woocommerce-compare).
 
 This plugin is 100% compatible with [WPML](http://wpml.org/?aid=24889&affiliate_key=Qn1wDeBNTcZV)
 
@@ -65,6 +65,12 @@ yith-woocommerce-compare-<WORDPRESS LOCALE >.mo
 3. The settings of plugin
 
 == Changelog ==
+
+= 2.3.23 = Released on 19 August 2020
+
+* New: Support for WooCommerce 4.4
+* New: Support for WordPress 5.5
+* Update: Plugin framework
 
 = 2.3.22 = Released on 03 June 2020
 
@@ -396,7 +402,8 @@ Full documentation is available [here](http://yithemes.com/docs-plugins/yith-woo
 
 == Upgrade notice ==
 
-= 2.3.22 = Released on 03 June 2020
+= 2.3.23 = Released on 19 August 2020
 
-* New: Support for WooCommerce 4.2
+* New: Support for WooCommerce 4.4
+* New: Support for WordPress 5.5
 * Update: Plugin framework

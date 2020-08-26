@@ -1,4 +1,5 @@
-jQuery(document).ready(function($) {
+jQuery(function($) {
+//jQuery(document).ready(function($) {
 	var project_hash = null;
 	var project_status = null;
 	var get_value = null;
@@ -14,7 +15,8 @@ jQuery(document).ready(function($) {
 	}    
 
   	if (get_value == 'woosea_manage_feed') {
-		$(document).on('ready',function(){
+		jQuery(function($) {
+		//$(document).on('ready',function(){
                         // Check if feed is processing
                         
                         jQuery.ajax({

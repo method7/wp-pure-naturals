@@ -31,6 +31,11 @@ const App = () => (
         />
         <Route
           exact
+          path={Method7Settings.path + 'vitamins-and-supplements'}
+          component={Products}
+        />
+        <Route
+          exact
           path={Method7Settings.path + 'products/:product'}
           component={Product}
         />
